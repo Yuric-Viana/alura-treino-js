@@ -6,7 +6,11 @@ export function filtrarLivros(livros) {
         const elementoBtn = document.getElementById(this.id);
         const categoria = elementoBtn.value;
         
-        let livrosFiltrados = livros.filter(livro => livro.categoria == categoria);
+        let livrosFiltrados = categoria == 'disponivel' ? exibirLivrosDisponiveis(livros) : livros.filter(livro => livro.categoria == categoria);
         exibirOsLivrosNaTela(livrosFiltrados);
     }
+}
+
+function exibirLivrosDisponiveis(livros) {
+    return livros.filter(livro => livro.quantidade > 0);
 }

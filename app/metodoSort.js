@@ -4,6 +4,8 @@ const ordenarPreco = document.getElementById('btnOrdenarPorPreco');
 ordenarPreco.addEventListener('click', ordenarPelosPrecos);
 
 export function ordenarPelosPrecos(livro) {
-   const precosOrdenados = livro.sort((a, b) => b.preco - a.preco);
-   exibirOsLivrosNaTela(precosOrdenados);
+   return function() {
+      const precosOrdenados = livro.sort((a, b) => b.preco - a.preco);
+      exibirOsLivrosNaTela(precosOrdenados);
+   }
 }
