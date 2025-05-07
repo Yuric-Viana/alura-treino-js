@@ -1,12 +1,12 @@
-import { exibirOsLivrosNaTela } from "./metodoForEach";
+import { exibirOsLivrosNaTela } from "./metodoForEach.js";
 
-const botoes = document.querySelectorAll('.btn');
-botoes.forEach(btn => btn.addEventListener('click', filtrarLivros));
-
+// Exporta uma função que retorna outra função (closure)
 export function filtrarLivros(livros) {
-    const elementoBtn = document.getElementById(this.id);
-    let categoria = elementoBtn.value;
-
-    let livrosFiltrados = livros.filter(livro => livro.categoria == categoria);
-    exibirOsLivrosNaTela(livrosFiltrados);
+    return function() {
+        const elementoBtn = document.getElementById(this.id);
+        const categoria = elementoBtn.value;
+        
+        let livrosFiltrados = livros.filter(livro => livro.categoria == categoria);
+        exibirOsLivrosNaTela(livrosFiltrados);
+    }
 }
