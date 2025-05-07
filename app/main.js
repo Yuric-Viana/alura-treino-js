@@ -1,6 +1,6 @@
-import {exibirOsLivrosNaTela} from "./metodoForEach.js";
-import {aplicarDesconto} from './metodoMap.js';
-// import {filtrarLivros} from "./filtrarLivros.js";
+import { exibirOsLivrosNaTela } from "./metodoForEach.js";
+import { aplicarDesconto } from './metodoMap.js';
+import { filtrarLivros } from "./filtrarLivros.js";
 // import { ordenarPelosPrecos } from "./metodoSort.js";
 
 let livros = [];
@@ -11,32 +11,30 @@ async function getBuscarLivrosDaAPI() {
     const res = await fetch(endpointDaAPI);
     livros = await res.json();
     let livrosComDesconto = aplicarDesconto(livros);
-    const exibirLivros = exibirOsLivrosNaTela(livrosComDesconto);
-    // const exibirLivrosFiltrados = filtrarLivros(livros);
-    // const exibirPrecosOrdenados = ordenarPelosPrecos(livros)
-}
- 
-const botoes = document.querySelectorAll('.btn');
-botoes.forEach(btn => btn.addEventListener('click', filtrarLivros));
+    exibirOsLivrosNaTela(livrosComDesconto);
 
-function filtrarLivros() {
-    const elementoBtn = document.getElementById(this.id);
-    let categoria = elementoBtn.value;
-
-    let livrosFiltrados = livros.filter(livro => livro.categoria == categoria);
-    exibirOsLivrosNaTela(livrosFiltrados);
+    configurarEventListeners();
 }
 
-const ordenarPreco = document.getElementById('btnOrdenarPorPreco');
-ordenarPreco.addEventListener('click', ordenarPelosPrecos);
+function configurarEventListeners() {
+    // Filtrar por categoria
+    const botoes = document.querySelectorAll('.btn');
+    botoes.forEach(btn => btn.addEventListener('click', filtrarLivros(livros)));
+
+    // Ordenar por preço
+    const ordenarPreco = document.getElementById('btnOrdenarPorPreco');
+    ordenarPreco.addEventListener('click', ordenarPelosPrecos);
+
+    // Filtrar disponíveis
+    const livrosDisponiveis = document.querySelectorAll('.indisponivel');
+    livrosDisponiveis.forEach(indisponivel =>
+        indisponivel.addEventListener('click', exibirLivrosDisponiveis));
+}
 
 function ordenarPelosPrecos() {
-   const precosOrdenados = livros.sort((a, b) => b.preco - a.preco);
-   exibirOsLivrosNaTela(precosOrdenados);
+    const precosOrdenados = livros.sort((a, b) => b.preco - a.preco);
+    exibirOsLivrosNaTela(precosOrdenados);
 }
-
-const livrosDisponiveis = document.querySelectorAll('.indisponivel');
-livrosDisponiveis.forEach(indisponivel => indisponivel.addEventListener('click', exibirLivrosDisponiveis));
 
 function exibirLivrosDisponiveis() {
     let livrosDisponiveis = livros.filter(livro => livro.quantidade !== 0);
