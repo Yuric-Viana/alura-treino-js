@@ -1,6 +1,7 @@
 import {exibirOsLivrosNaTela} from "./metodoForEach.js";
 import {aplicarDesconto} from './metodoMap.js';
 // import {filtrarLivros} from "./filtrarLivros.js";
+// import { ordenarPelosPrecos } from "./metodoSort.js";
 
 let livros = [];
 const endpointDaAPI = 'https://guilhermeonrails.github.io/casadocodigo/livros.json';
@@ -12,6 +13,7 @@ async function getBuscarLivrosDaAPI() {
     let livrosComDesconto = aplicarDesconto(livros);
     const exibirLivros = exibirOsLivrosNaTela(livrosComDesconto);
     // const exibirLivrosFiltrados = filtrarLivros(livros);
+    // const exibirPrecosOrdenados = ordenarPelosPrecos(livros)
 }
  
 const botoes = document.querySelectorAll('.btn');
@@ -31,4 +33,12 @@ ordenarPreco.addEventListener('click', ordenarPelosPrecos);
 function ordenarPelosPrecos() {
    const precosOrdenados = livros.sort((a, b) => b.preco - a.preco);
    exibirOsLivrosNaTela(precosOrdenados);
+}
+
+const livrosDisponiveis = document.querySelectorAll('.indisponivel');
+livrosDisponiveis.forEach(indisponivel => indisponivel.addEventListener('click', exibirLivrosDisponiveis));
+
+function exibirLivrosDisponiveis() {
+    let livrosDisponiveis = livros.filter(livro => livro.quantidade !== 0);
+    exibirOsLivrosNaTela(livrosDisponiveis);
 }
