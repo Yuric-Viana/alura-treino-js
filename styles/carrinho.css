@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+:root {
+    --bg-color: #ffffff;
+    --button-color: #326589;
+    --text-title-color: #fc6621;
+    --text-description-color: #fc6621;
+    --text-price-color: #002f52;
+    --text-author-color: #858585;
+    --text-tag-color: #9c9c9c;
+}
+
+body {
+    font-family: 'Poppins';
+    overflow-x: hidden;
+  }
+
+.header {
+    width: 100%;
+    height: 4em;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+#carrinho-compras {
+    width: 2em;
+    cursor: pointer;
+}
+
+.banner {
+    background-image: url('/imagens/Banner-1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 278px;
+}
+
+.livros {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.livro {
+    width: 302px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 644px;
+    margin-bottom: 1rem;
+}
+
+.indisponivel {
+    opacity: 0.3;
+}
+
+.livro__titulo {
+    color: var(--text-title-color);
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    line-height: 24px;
+}
+
+.livro__descricao {
+    text-align: center;
+    font-size: 18px;
+    color: var(--text-author-color);
+    margin: 1rem 0;
+}
+
+.livro__preco {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-price-color);
+}
+
+.livros__disponiveis {
+    width: 100%;
+    height: 80px;
+    background-color: var(--text-description-color);
+    margin-top: 1rem;
+    text-align: center;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.livros__disponiveis p {
+    color: #fff;
+    font-weight: 500;
+    line-height: 24px;
+    font-size: 2.5em;
+}
+  
+.rodape {
+    width: 100%;
+    height: 6em;
+    background: linear-gradient(96.48deg, #002f52 36.3%, #326589 99.56%);
+    margin-top: 1em;
+    text-align: center;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rodape p {
+    color: #fff;
+    font-weight: 500;
+    line-height: 24px;
+}
